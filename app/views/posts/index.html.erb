@@ -1,0 +1,35 @@
+<h1>☕ 新規投稿</h1>
+<div class="new-post-link">
+    <%= link_to "➕ 新しい投稿", new_post_path, class: "cafe-button" %>
+</div>
+
+<ul>
+    <% @posts.each do |post| %>
+    <li>
+        <% if post.illustration_image.attached? %>
+        <%= image_tag url_for(post.illustration_image),size: "200x200" if post.illustration_image.attached? %>
+        <% elsif post.illustration.present? %>
+        <%= image_tag "illustrations/#{post.illustration}", size: "200x200", class: "image-tag" %>
+        <% else %>
+        <%= image_tag "illustrations/default.png", size: "200x200", class: "image-tag" %>
+        <% end %>
+
+
+        <div class="post-details">
+            <h1><%= post.drink_name %></h1>
+            <p><strong>ホイップクリーム:</strong> <%= post.whipcream %></p>
+            <p><strong>氷の量:</strong> <%= post.ice_amount %></p>
+            <p><strong>パウダーの種類:</strong> <%= post.powder_type %></p>
+            <p><strong>シロップの種類:</strong> <%= post.syrup_type %></p>
+            <p><strong>その他カスタマイズ:</strong> <%= post.other_customizeation %></p>
+            <span><small><%= post.created_at.in_time_zone("Asia/Tokyo").strftime("%Y年%m月%d日 %H:%M") %></small></span>
+
+            <div class="post-actions">
+                <%= link_to "✏️ 編集", edit_post_path(post), class: "cafe-button edit" %>
+                <%= button_to "🗑️ 削除", post_path(post), method: :delete, class: "cafe-button delete" %>
+            </div>
+        </div>
+    </li>
+
+    <% end %>
+</ul>

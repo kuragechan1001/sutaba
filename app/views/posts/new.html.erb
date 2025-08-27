@@ -1,0 +1,75 @@
+<h1>新しい投稿</h1>
+
+<%= form_with model: @post, local: true, html: { multipart: true } do |form| %>
+<div class="form-group">
+
+    <%# ドリンク名の選択 %>
+    <div>
+        <%= form.label :drink_name, "ドリンク名" %><br>
+        <%= form.text_field :drink_name %>
+    </div>
+
+    <%# イラスト選択（ラジオボタン）とアップロード %>
+    <div>
+        <label>イラストを選択</label><br>
+        <% ["coffe.png", "choco.png", "maccha.png", "mango.png", "moca.png", "ratte.png"].each do |img| %>
+        <label style="margin-right: 20px;">
+            <%= form.radio_button :illustration, img %>
+            <%= image_tag "illustrations/#{img}", size: "100x100" %>
+        </label>
+        <% end %>
+        <br>
+        <%= form.label :illustration_image, "画像をアップロード" %><br>
+        <%= form.file_field :illustration_image %>
+    </div>
+
+    <%# ホイップクリームの有無 %>
+    <div>
+        <%= form.label :whipcream, "ホイップクリーム" %><br>
+        <%= form.select :whipcream, ["多め", "少なめ", "なし"], prompt: "選択してください" %>
+    </div>
+
+    <%# 氷の量の選択 %>
+    <div>
+        <%= form.label :ice_amount, "氷の量" %><br>
+        <%= form.select :ice_amount, ["多め", "少なめ（ミルク多め）", "少なめ（ミルク普通）","なし（ミルク多め）", "なし（ミルク普通）"], prompt: "選択してください" %>
+    </div>
+
+    <%# パウダーの種類 %>
+    <div>
+        <%= form.label :powder_type, "パウダーの種類" %><br>
+        <%= form.select :powder_type, ["ダークモカパウダー多め","ダークモカパウダー少なめ", "抹茶パウダー多め", "抹茶パウダー少なめ", "シナモン", "なし"], prompt: "選択してください" %>
+    </div>
+
+    <%# シロップの種類 %>
+    <div>
+        <%= form.label :syrup_type, "シロップの種類" %><br>
+        <%= form.select :syrup_type, ["バニラ", "キャラメル", "ヘーゼルナッツ", "ホワイトモカ", "モカ", "なし"], prompt: "選択してください" %>
+    </div>
+
+
+    <%# ミルクの種類 %>
+    <div>
+        <%= form.label :milk_type, "ミルクの種類" %><br>
+        <%= form.select :milk_type, ["低脂肪ミルク", "無脂肪ミルク", "豆乳", "アーモンドミルク", "オーツミルク", "ブレべミルク",  "なし"], prompt: "選択してください" %>
+    </div>
+
+
+    <%# ソースの種類 %>
+    <div>
+        <%= form.label :sauce_type, "ソースの種類" %><br>
+        <%= form.select :sauce_type, ["はちみつ", "チョコソース", "キャラメルソース", "なし"], prompt: "選択してください" %>
+    </div>
+
+    <%# その他カスタマイズ（自由記述） %>
+    <div>
+        <%= form.label :other_customizeation, "その他カスタマイズ" %><br>
+        <%= form.text_area :other_customizeation, rows: 4 %>
+    </div>
+
+    <%# 投稿ボタン %>
+    <div>
+        <%= form.submit "投稿する" %>
+    </div>
+</div>
+<% end %>

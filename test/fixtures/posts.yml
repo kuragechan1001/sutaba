@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  drink_name: MyString
+  whipcream: MyString
+  ice_amount: MyString
+  powder_type: MyString
+  syrup_type: MyString
+  other_customizeation: MyText
+
+two:
+  drink_name: MyString
+  whipcream: MyString
+  ice_amount: MyString
+  powder_type: MyString
+  syrup_type: MyString
+  other_customizeation: MyText
