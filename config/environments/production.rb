@@ -3,11 +3,6 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  # Set secret_key_base if not provided via environment variable or credentials
-  # This is needed for asset precompilation during build
-  # Note: This is a fallback value. In production, SECRET_KEY_BASE should be set via environment variable
-  config.secret_key_base = ENV.fetch("SECRET_KEY_BASE") { "dummy_secret_key_base_for_asset_precompilation_only_please_set_secret_key_base_in_production" }
-
   # Code is not reloaded between requests.
   config.enable_reloading = false
 
