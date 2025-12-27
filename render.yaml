@@ -2,6 +2,6 @@ services:
   - type: web
     name: sutaba
     env: ruby
-    buildCommand: bundle install
+    buildCommand: ./bin/render-build.sh
     startCommand: bundle exec puma -C config/puma.rb
     preDeployCommand: bundle exec rails db:migrate
