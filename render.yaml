@@ -2,9 +2,6 @@ services:
   - type: web
     name: sutaba
     env: ruby
-    buildCommand: bundle install && SECRET_KEY_BASE=dummy_secret_key_base_for_asset_precompilation_only bundle exec rake assets:precompile
+    buildCommand: bash -c "export SECRET_KEY_BASE=dummy_secret_key_base_for_asset_precompilation_only && bundle install && bundle exec rake assets:precompile"
     startCommand: bundle exec puma -C config/puma.rb
     preDeployCommand: bundle exec rails db:migrate
-    envVars:
-      - key: SECRET_KEY_BASE
-        value: dummy_secret_key_base_for_asset_precompilation_only
