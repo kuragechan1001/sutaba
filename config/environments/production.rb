@@ -3,6 +3,10 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Set secret_key_base fallback for build time (assets:precompile, assets:clean)
+  # This is needed when SECRET_KEY_BASE environment variable is not set
+  config.secret_key_base = ENV.fetch("SECRET_KEY_BASE") { "dummy_secret_key_base_for_build_time_only" }
+
   # Code is not reloaded between requests.
   config.enable_reloading = false
 
